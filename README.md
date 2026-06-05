@@ -1,17 +1,20 @@
-# 📊 ADY201M Project - Online Retail Data Analysis
+# 📈 Price Elasticity Analysis in Omnichannel Retail
 
 ## 🎯 Project Overview
 
-This project analyzes the Online Retail dataset using Python, statistical analysis, data visualization, and regression techniques to understand customer purchasing behavior, product performance, and price elasticity.
+This project investigates price elasticity in an omnichannel retail environment using transactional retail data. The objective is to understand how customer demand responds to price changes and how pricing strategies influence sales performance and revenue.
 
-The project follows a complete data analytics workflow:
+By applying data preprocessing, statistical modeling, visualization, and regression analysis, this project provides data-driven insights that can support pricing decisions and business strategy development.
+
+The project covers the complete analytics workflow:
 
 * Data Understanding
 * Data Cleaning & Pre-processing
 * Feature Engineering
 * Data Visualization
 * Exploratory Data Analysis (EDA)
-* Regression Analysis
+* Price Elasticity Analysis
+* Regression Modeling
 * Revenue Simulation
 
 ---
@@ -19,7 +22,7 @@ The project follows a complete data analytics workflow:
 ## 📁 Project Structure
 
 ```text
-ADY201m_project/
+Price-Elasticity-Analysis-in-Omnichannel-Retail/
 │
 ├── Data_Understanding_and_Pre_processing.py
 ├── Data_visualization.py
@@ -40,7 +43,7 @@ Dataset Used:
 Online Retail.xlsx
 ```
 
-The dataset contains transactional records from an online retail store, including:
+The dataset contains online retail transaction records including:
 
 * Invoice Number
 * Product Description
@@ -50,7 +53,7 @@ The dataset contains transactional records from an online retail store, includin
 * Invoice Date
 * Country
 
-The dataset is used to analyze purchasing patterns, sales performance, and pricing effects on demand.
+The data is used to evaluate customer purchasing behavior, product demand, and price sensitivity across retail transactions.
 
 ---
 
@@ -58,113 +61,109 @@ The dataset is used to analyze purchasing patterns, sales performance, and prici
 
 ### Main Tasks
 
-* Load and inspect dataset
-* Check dataset information
-* Explore statistical summaries
-* Identify missing values
-* Remove invalid records
-* Convert date-time variables
+* Dataset inspection
+* Missing value detection
+* Data cleaning
+* Data type conversion
 * Feature engineering
 * Log transformation
 * Seasonal feature extraction
-* One-Hot Encoding
-* Lag feature creation
+* Categorical encoding
+* Lag feature generation
 * Outlier detection
 
 ### Features Created
 
-| Feature     | Description               |
-| ----------- | ------------------------- |
-| TotalPrice  | Quantity × UnitPrice      |
-| LogQuantity | Log-transformed Quantity  |
-| LogPrice    | Log-transformed UnitPrice |
-| Month       | Transaction Month         |
-| DayOfWeek   | Day Name                  |
-| Hour        | Transaction Hour          |
-| Lag_1_Day   | Previous Day Sales        |
+| Feature     | Description                |
+| ----------- | -------------------------- |
+| TotalPrice  | Quantity × UnitPrice       |
+| LogQuantity | Log-transformed Quantity   |
+| LogPrice    | Log-transformed Unit Price |
+| Month       | Transaction Month          |
+| DayOfWeek   | Transaction Day            |
+| Hour        | Transaction Hour           |
+| Lag_1_Day   | Previous Day Sales         |
 
-### Data Cleaning Steps
+### Data Cleaning
 
-* Removed missing values
-* Removed negative quantities
-* Removed zero or negative prices
-* Converted InvoiceDate to datetime format
+The preprocessing stage includes:
+
+* Removing missing values
+* Removing negative quantities
+* Removing invalid prices
+* Converting InvoiceDate to datetime format
+* Creating additional analytical variables
 
 ---
 
 ## 📊 Data Visualization
 
-The project includes multiple visualization techniques to better understand customer behavior and sales performance.
+Several visualizations are developed to explore retail sales patterns and pricing behavior.
 
-### 1. Scatter Plot
+### Scatter Plot
 
-Visualization of:
+Relationship between:
 
 * LogPrice
 * LogQuantity
 
 Purpose:
 
-* Explore relationship between price and demand
-* Identify demand elasticity patterns
+* Explore demand response to pricing changes.
 
 ---
 
-### 2. Monthly Revenue Trend
+### Monthly Revenue Trend
 
-Line chart showing:
-
-* Monthly sales revenue
+Visualization of revenue over time.
 
 Purpose:
 
-* Detect seasonality
-* Observe revenue fluctuations over time
+* Identify seasonal sales patterns.
+* Observe revenue fluctuations.
 
 ---
 
-### 3. Price Trend vs Sales
+### Price Trend vs Sales
 
 Comparison between:
 
-* Average Product Price
-* Total Quantity Sold
+* Product prices
+* Quantity sold
 
 Purpose:
 
-* Analyze relationship between pricing and sales volume
+* Analyze pricing effects on demand.
 
 ---
 
-### 4. Top 10 Revenue Products
+### Top Revenue Products
 
-Bar chart displaying:
+Bar charts displaying:
 
-* Highest revenue-generating products
+* Top 10 revenue-generating products
 
 Purpose:
 
-* Identify best-performing products
-* Understand revenue concentration
+* Identify high-performing products.
 
 ---
 
-### 5. Quantity Outlier Detection
+### Quantity Outlier Detection
 
-Boxplot visualization of:
+Boxplot analysis for:
 
 * Quantity
 
 Purpose:
 
-* Detect extreme purchase quantities
-* Identify unusual transactions
+* Detect abnormal purchasing behavior.
 
 ---
 
-### 6. Correlation Heatmap
+### Correlation Analysis
 
-Heatmap displaying correlations among:
+Heatmap displaying relationships among:
 
 * Quantity
 * UnitPrice
@@ -174,46 +173,28 @@ Heatmap displaying correlations among:
 
 Purpose:
 
-* Discover relationships between key variables
+* Identify important business relationships.
 
 ---
 
-### 7. Product Elasticity Heatmap
+### Product Elasticity Heatmap
 
-Heatmap comparing:
+Comparison of:
 
 * Average LogPrice
 * Average LogQuantity
 
-For top-selling products.
-
 Purpose:
 
-* Evaluate product-level price sensitivity
+* Explore product-level price sensitivity.
 
 ---
 
-## 📈 Data Analysis
+## 📈 Price Elasticity Analysis
 
-### Revenue Analysis
+### Ordinary Least Squares (OLS)
 
-Performed analysis on:
-
-* Top 10 Revenue Products
-* Top 10 Best-Selling Products
-* Monthly Revenue Performance
-
-Insights generated include:
-
-* Most profitable products
-* Highest demand products
-* Seasonal sales trends
-
----
-
-### Price Elasticity Analysis
-
-Model Used:
+Model:
 
 ```text
 LogQuantity ~ LogPrice
@@ -221,18 +202,19 @@ LogQuantity ~ LogPrice
 
 Purpose:
 
-* Estimate demand sensitivity to price changes
+* Estimate demand elasticity with respect to price.
 
 Output:
 
 * Elasticity coefficient
-* OLS regression summary
+* Statistical significance
+* Model diagnostics
 
 ---
 
 ### Fixed Effects Model
 
-Model Used:
+Model:
 
 ```text
 LogQuantity ~ LogPrice + C(Description)
@@ -240,19 +222,19 @@ LogQuantity ~ LogPrice + C(Description)
 
 Purpose:
 
-* Control for product-specific characteristics
-* Improve elasticity estimation accuracy
+* Control for product-specific characteristics.
+* Improve elasticity estimation accuracy.
 
 Output:
 
 * Fixed Effects Elasticity
-* Product-specific effects
+* Product-level controls
 
 ---
 
 ## 📉 Regression Analysis
 
-### Model 1: Simple Linear Regression
+### Model 1 – Simple Linear Regression
 
 Target Variable:
 
@@ -260,7 +242,7 @@ Target Variable:
 LogQuantity
 ```
 
-Independent Variable:
+Predictor:
 
 ```text
 LogPrice
@@ -274,11 +256,11 @@ Evaluation Metrics:
 
 Purpose:
 
-* Measure direct effect of price on quantity demanded
+* Measure the direct relationship between price and demand.
 
 ---
 
-### Model 2: Multiple Linear Regression
+### Model 2 – Multiple Linear Regression
 
 Target Variable:
 
@@ -286,13 +268,11 @@ Target Variable:
 LogQuantity
 ```
 
-Independent Variables:
+Predictors:
 
-```text
-LogPrice
-Month
-Hour
-```
+* LogPrice
+* Month
+* Hour
 
 Evaluation Metrics:
 
@@ -302,20 +282,20 @@ Evaluation Metrics:
 
 Purpose:
 
-* Measure combined influence of price and seasonality factors on demand
+* Evaluate combined effects of pricing and temporal factors on demand.
 
 ---
 
 ## 💰 Revenue Simulation
 
-A pricing simulation is performed by increasing product prices by 10%.
+A pricing simulation is conducted by increasing prices by 10%.
 
 ### Simulation Process
 
-1. Increase UnitPrice by 10%
-2. Predict new demand using elasticity
-3. Calculate new revenue
-4. Compare old and new revenue
+1. Increase UnitPrice by 10%.
+2. Estimate new demand using elasticity.
+3. Calculate projected revenue.
+4. Compare projected revenue with current revenue.
 
 ### Outputs
 
@@ -326,8 +306,8 @@ A pricing simulation is performed by increasing product prices by 10%.
 
 Purpose:
 
-* Support pricing strategy decisions
-* Evaluate potential revenue impact
+* Support strategic pricing decisions.
+* Evaluate revenue impact of price adjustments.
 
 ---
 
@@ -346,23 +326,24 @@ Purpose:
 * Statsmodels
 * Scikit-Learn
 
-### Techniques
+### Analytical Techniques
 
 * Data Cleaning
 * Feature Engineering
 * One-Hot Encoding
 * Log Transformation
-* Exploratory Data Analysis
+* Exploratory Data Analysis (EDA)
 * Data Visualization
 * OLS Regression
 * Linear Regression
+* Fixed Effects Modeling
 * Revenue Simulation
 
 ---
 
 ## 🚀 How to Run
 
-### Install Dependencies
+### Install Required Packages
 
 ```bash
 pip install pandas numpy matplotlib seaborn statsmodels scikit-learn openpyxl
@@ -399,20 +380,20 @@ python Regression_Analysis.py
 The project generates:
 
 * Cleaned Dataset
-* Statistical Summaries
-* Revenue Analysis Reports
+* Descriptive Statistics
 * Data Visualizations
-* Elasticity Estimates
-* Regression Performance Metrics
+* Revenue Analysis
+* Price Elasticity Estimates
+* Regression Evaluation Metrics
 * Revenue Simulation Results
 
 ---
 
-## 👨‍🎓 Course Information
+## 🎓 Course Information
 
 **Course:** ADY201M
 
-**Project Title:** Online Retail Data Analysis
+**Project Title:** Price Elasticity Analysis in Omnichannel Retail
 
 **Project Type:** Data Analytics & Business Intelligence
 
@@ -422,4 +403,6 @@ The project generates:
 
 ## 📌 Project Objective
 
-The main objective of this project is to analyze online retail transactions, understand customer purchasing behavior, estimate price elasticity, and provide data-driven insights that support business decision-making and pricing strategies.
+The primary objective of this project is to estimate price elasticity in an omnichannel retail environment and evaluate how pricing changes affect customer demand and overall revenue performance.
+
+The findings provide valuable insights that can support pricing strategy, revenue optimization, and data-driven business decision-making.
